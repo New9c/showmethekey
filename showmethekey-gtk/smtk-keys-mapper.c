@@ -517,14 +517,14 @@ static char *smtk_keys_mapper_concat_key(SmtkKeysMapper *mapper,
 	// Use a GString for easior mods concat.
 	GString *buffer = g_string_new(NULL);
 	// I'd like to call it "Super".
-	if (xkb_state_mod_name_is_active(mapper->xkb_state, XKB_MOD_NAME_LOGO,
-					 XKB_STATE_MODS_EFFECTIVE) > 0)
-		g_string_append(buffer,
-				mode == SMTK_KEY_MODE_COMPACT ? "⌘" : "Super+");
 	if (xkb_state_mod_name_is_active(mapper->xkb_state, XKB_MOD_NAME_CTRL,
 					 XKB_STATE_MODS_EFFECTIVE) > 0)
 		g_string_append(buffer,
-				mode == SMTK_KEY_MODE_COMPACT ? "⌃" : "Ctrl+");
+				mode == SMTK_KEY_MODE_COMPACT ? "" : "Ctrl+");
+	if (xkb_state_mod_name_is_active(mapper->xkb_state, XKB_MOD_NAME_LOGO,
+					 XKB_STATE_MODS_EFFECTIVE) > 0)
+		g_string_append(buffer,
+				mode == SMTK_KEY_MODE_COMPACT ? "" : "Super+");
 	// Shift+Alt will get Meta_L and Meta_R,
 	// and we should not add Alt for it.
 	// I think Meta should be a modifier, but Xkbcommon does not.
@@ -533,7 +533,7 @@ static char *smtk_keys_mapper_concat_key(SmtkKeysMapper *mapper,
 					 XKB_STATE_MODS_EFFECTIVE) > 0 &&
 	    strcmp(main_key, "Meta") != 0)
 		g_string_append(buffer,
-				mode == SMTK_KEY_MODE_COMPACT ? "⌥" : "Alt+");
+				mode == SMTK_KEY_MODE_COMPACT ? "⎇" : "Alt+");
 	if (xkb_state_mod_name_is_active(mapper->xkb_state, XKB_MOD_NAME_SHIFT,
 					 XKB_STATE_MODS_EFFECTIVE) > 0)
 		// Shift is a little bit complex, it can be consumed by
