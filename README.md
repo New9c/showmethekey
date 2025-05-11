@@ -96,10 +96,10 @@ Please help package showmethekey to your distribution!
 ### Build
 
 ```
-$ git clone https://github.com/AlynxZhou/showmethekey.git
-$ cd showmethekey
-$ mkdir build && cd build && meson setup --prefix=/usr . .. && meson compile && meson install
-$ showmethekey-gtk
+git clone https://github.com/New9c/showmethekey.git
+cd showmethekey
+mkdir build && cd build && meson setup --prefix=/usr . .. && meson compile && meson install
+showmethekey-gtk
 ```
 
 # Usage
